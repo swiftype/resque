@@ -92,7 +92,11 @@ module Resque
 
       def show_args(args)
         Array(args).map do |a|
-          a.to_yaml
+          begin
+            a.to_yaml
+          rescue
+            a.inspect
+          end
         end.join("\n")
       end
 
